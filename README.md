@@ -2,7 +2,7 @@
 
 The purpose of this exercise is to learn how to use Map collections.
 
-Duration: **1 hour**
+Duration: **1 hour 30 minutes**
 
 ## Description
 
