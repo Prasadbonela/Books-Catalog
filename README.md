@@ -1,12 +1,12 @@
 # Books Catalog
 
-The purpose of this exercise is to learn how to use Map collections.
+The purpose of this exercise is to learn how to use `Map` collections.
 
 Duration: **1 hour 30 minutes**
 
 ## Description
 
-In this task, you will simulate work with a book catalog. The catalog can be represented as the TreeMap collection, where the author is the key and the list of published books is the value. You have the following description:
+In this task, you will simulate work with a book catalog. The catalog can be represented as the `TreeMap` collection, where the author is the key and the list of published books is the value. You have the following description:
 
 * The `Author` class, which consists of the first and last name
 * The `Book` class, which consists of the title, genre, and cost
