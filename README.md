@@ -26,7 +26,7 @@ Please, proceed to the `BooksCatalog` class and provide implementations of the f
 * `Set<Book> findBooksByGenre(String pattern)` \
   Returns a set of books of the specified genre or `null` if there are no books of this genre
 * `Map<Book, List<Author>> findAuthorsByBookTitle(String pattern)` \
-  Returns the book/author pair map .The search is carried out based on   the words in the book's title.
+  Returns the book/author pair map. The search is carried out based on   the words in the book's title
 
 ### Details
 
@@ -34,9 +34,9 @@ Please, proceed to the `BooksCatalog` class and provide implementations of the f
 * To order the map by book title, apply alphabetical order by title and, if the titles match, by decreasing cost.
 * The `findAuthorsByBookTitle` method searches for books based on a word pattern; it is case-insensitive.
 * The `findBooksByGenre` method searches for books of a certain genre specified as a search pattern; the matching pattern and name of the genre are case-insensitive; all the books found are sorted by cost in ascending order.
-* You can use a regular expression to match occurrences of a pattern in a book title or genre in the `findBooksByGenr`e and `findAuthorsByBookTitle` methods.
+* You can use a regular expression to match occurrences of a pattern in a book title or genre in the `findBooksByGenre` and `findAuthorsByBookTitle` methods.
 * The `getAllAuthors` method returns an alphabetical list of authors as a String, where the authors' names are separated by '\n'.
-* No methods of the `BooksCatalog` class accept `null`, and they must throw a `NullPointerException `if they do.
+* No methods of the `BooksCatalog` class accept `null`, and they must throw a `NullPointerException` if they do.
 * You can use the `getData()` method in the Util class to create the initial map.
 * You can add any private methods to the `BooksCatalog` class.
 
