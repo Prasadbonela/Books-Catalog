@@ -36,15 +36,6 @@ import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 })
 public class ComplianceTest {
 
-    private static final Set<String> ALLOWED_CLASSES = new TreeSet<>(asList(
-            "java.util.Optional", "java.util.Objects", "java.util.ArrayList",
-            "java.util.Collection", "java.util.Comparator", "java.util.LinkedList", "java.util.List",
-            "java.util.Map", "java.util.Map$Entry", "java.util.TreeMap", "java.util.HashMap", "java.util.LinkedHashMap",
-            "java.util.Set", "java.util.TreeSet", "java.util.LinkedHashSet"));
-    private static final List<String> FORBIDDEN_CLASSES = List.of("java.util.*");
-    private static final List<String> ALLOWED_PACKAGES = List.of("java.util.function.*");
-    private static final String FORBIDDEN_CLASSES_PATTERN = toPattern(FORBIDDEN_CLASSES);
-
     static CtModel ctModel;
 
     static String toPattern(List<String> strings) {
@@ -81,14 +72,14 @@ public class ComplianceTest {
                     )
             )));
 
-    DescribedPredicate<JavaClass> haveNameBookCatalog = new DescribedPredicate<JavaClass>("have name BookCatalog") {
+    DescribedPredicate<JavaClass> haveNameBookCatalog = new DescribedPredicate<>("have name BookCatalog") {
         @Override
         public boolean test(JavaClass javaClass) {
             return javaClass.getName().equals(BooksCatalog.class.getName());
         }
     };
 
-    ArchCondition<JavaClass> condition = new ArchCondition<JavaClass>("not add additional fields.") {
+    ArchCondition<JavaClass> condition = new ArchCondition<>("not add additional fields.") {
         @Override
         public void check(JavaClass item, ConditionEvents events) {
             item.getFields().forEach(f -> {
@@ -102,8 +93,8 @@ public class ComplianceTest {
     @ArchTest
     ArchRule noAdditionalFields = classes().that(haveNameBookCatalog).should(condition);
 
-    @ArchTest // no Itereble, List, Set, Map
-    ArchRule ruleNoClassesShouldImplementAnyInterface = noClasses().should().implement(new DescribedPredicate<JavaClass>("") {
+    @ArchTest // no Iterable, List, Set, Map
+    ArchRule ruleNoClassesShouldImplementAnyInterface = noClasses().should().implement(new DescribedPredicate<>("") {
         @Override
         public boolean test(JavaClass javaClass) {
             return javaClass.getInterfaces().size() != 0;
