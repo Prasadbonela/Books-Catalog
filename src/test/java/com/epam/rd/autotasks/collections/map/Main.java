@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Main {
-    private static final String EOL = System.lineSeparator();
 
     public static void main(String[] args) {
         BooksCatalog catalog = new BooksCatalog(Util.getData("src/main/resources/data.csv"));

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class BooksCatalog /*extends TreeMap<Author, List<Book>>*/ {
+public class BooksCatalog {
     private static final String EOL = "\n";
     private Map<Author, List<Book>> catalog;
 
@@ -46,7 +46,8 @@ public class BooksCatalog /*extends TreeMap<Author, List<Book>>*/ {
      *
      * @param pattern the string to search for in the book title.
      * @return the map which contains all found books and their authors.
-     * It must be sorted by titles of books.
+     * It must be sorted by titles of books, if the titles match,
+     * by increasing cost.
      */
     public Map<Book, List<Author>> findAuthorsByBookTitle(String pattern) {
         // place your code here
