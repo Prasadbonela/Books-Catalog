@@ -31,7 +31,7 @@ Please, proceed to the `BooksCatalog` class and provide implementations of the f
 ### Details
 
 * To order the map by author, apply alphabetical order by first name and, if the names match, alphabetical order by last name.
-* To order the map by book title, apply alphabetical order by title and, if the titles match, by decreasing cost.
+* To order the map by book title, apply alphabetical order by title and, if the titles match, by ascending cost.
 * The `findAuthorsByBookTitle` method searches for books based on a word pattern; it is case-insensitive.
 * The `findBooksByGenre` method searches for books of a certain genre specified as a search pattern; the matching pattern and name of the genre are case-insensitive; all the books found are sorted by cost in ascending order.
 * You can use a regular expression to match occurrences of a pattern in a book title or genre in the `findBooksByGenre` and `findAuthorsByBookTitle` methods.
