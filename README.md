@@ -33,7 +33,7 @@ Please, proceed to the `BooksCatalog` class and provide implementations of the f
 * To order the map by author, apply alphabetical order by first name and, if the names match, alphabetical order by last name.
 * To order the map by book title, apply alphabetical order by title and, if the titles match, by ascending cost.
 * The `findAuthorsByBookTitle` method searches for books based on a word pattern; it is case-insensitive.
-* The `findBooksByGenre` method searches for books of a certain genre specified as a search pattern; the matching pattern and name of the genre are case-insensitive; all the books found are sorted by cost in ascending order.
+* The `findBooksByGenre` method searches for books of a certain genre specified as a search pattern; the matching pattern and name of the genre are case-insensitive; all the books found are sorted using natural ordering.
 * You can use a regular expression to match occurrences of a pattern in a book title or genre in the `findBooksByGenre` and `findAuthorsByBookTitle` methods.
 * The `getAllAuthors` method returns an alphabetical list of authors as a String, where the authors' names are separated by '\n'.
 * No methods of the `BooksCatalog` class accept `null`, and they must throw a `NullPointerException` if they do.

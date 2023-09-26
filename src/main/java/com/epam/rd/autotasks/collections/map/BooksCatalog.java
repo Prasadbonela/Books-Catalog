@@ -60,7 +60,7 @@ public class BooksCatalog {
      * one genre of the book contains the specified pattern ignoring case.
      *
      * @param pattern the string to search for in the book genre list.
-     * @return an authors list of the found books.
+     * @return a set of books sorted using natural ordering.
      * @see Book class.
      */
     public Set<Book> findBooksByGenre(String pattern) {
