@@ -1,88 +1,80 @@
 package com.epam.rd.autotasks.collections.map;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class BooksCatalog {
     private static final String EOL = "\n";
-    private Map<Author, List<Book>> catalog;
+    private TreeMap<Author, List<Book>> catalog;
 
     public BooksCatalog() {
-        // place your code here
+        this.catalog = new TreeMap<>();
     }
 
     public BooksCatalog(Map<Author, List<Book>> catalog) {
-        // place your code here
+        this.catalog = new TreeMap<>(catalog);
     }
 
-    /**
-     * Returns a List of books of the specified author.
-     *
-     * @param author the author of books to search for.
-     * @return a list of books or {@code null}
-     * if there is no such author in the catalog.
-     */
     public List<Book> findByAuthor(Author author) {
-        // place your code here
-        return null;
+        Objects.requireNonNull(author, "Author cannot be null");
+        return catalog.getOrDefault(author, null);
     }
 
-    /**
-     * @return the string representation of all authors
-     * separated by the current operating system {@code lineSeparator}.
-     */
-    public String getAllAuthors() {
-        // place your code here
-        return null;
-    }
-
-    /**
-     * Searches for pairs of (author, book) by the book title.
-     * The pair must be included in the resulting map if the
-     * book title contains the specified string matched ignore case.
-     * All authors of the book must be specified in the
-     * book authors list.
-     *
-     * @param pattern the string to search for in the book title.
-     * @return the map which contains all found books and their authors.
-     * It must be sorted by titles of books, if the titles match,
-     * by increasing cost.
-     */
-    public Map<Book, List<Author>> findAuthorsByBookTitle(String pattern) {
-        // place your code here
-        return null;
-    }
-
-    /**
-     * Searches for all books whose genre list contains the specified string.
-     * The book must be included in the resulting list if at least
-     * one genre of the book contains the specified pattern ignoring case.
-     *
-     * @param pattern the string to search for in the book genre list.
-     * @return a set of books sorted using natural ordering.
-     * @see Book class.
-     */
-    public Set<Book> findBooksByGenre(String pattern) {
-        // place your code here
-        return null;
-    }
-
-    /**
-     * Searches for authors of the specified book.
-     *
-     * @param book the book.
-     * @return a list of authors of the specified book.
-     * @throws NullPointerException if the parameter is {@code null}
-     */
     public List<Author> findAuthorsByBook(Book book) {
-        // place your code here
-        return null;
+        Objects.requireNonNull(book, "Book cannot be null");
+        List<Author> authors = new ArrayList<>();
+        for (Map.Entry<Author, List<Book>> entry : catalog.entrySet()) {
+            if (entry.getValue().contains(book)) {
+                authors.add(entry.getKey());
+            }
+        }
+        return authors.isEmpty() ? null : authors;
+    }
+
+    public String getAllAuthors() {
+        TreeSet<Author> sortedAuthors = new TreeSet<>(catalog.keySet());
+        StringBuilder result = new StringBuilder();
+        for (Author author : sortedAuthors) {
+            result.append(author.getFirstName()).append(" ").append(author.getLastName()).append(EOL);
+        }
+        return result.toString().trim();
+    }
+
+    public Set<Book> findBooksByGenre(String pattern) {
+        Objects.requireNonNull(pattern, "Pattern cannot be null");
+        TreeSet<Book> books = new TreeSet<>();
+        for (List<Book> bookList : catalog.values()) {
+            for (Book book : bookList) {
+                for (String genre : book.getGenres()) {
+                    if (genre.toLowerCase().contains(pattern.toLowerCase())) {
+                        books.add(book);
+                        break;
+                    }
+                }
+            }
+        }
+        return books.isEmpty() ? null : books;
+    }
+
+    public Map<Book, List<Author>> findAuthorsByBookTitle(String pattern) {
+        Objects.requireNonNull(pattern, "Pattern cannot be null");
+        TreeMap<Book, List<Author>> result = new TreeMap<>();
+        for (Map.Entry<Author, List<Book>> entry : catalog.entrySet()) {
+            for (Book book : entry.getValue()) {
+                if (book.getTitle().toLowerCase().contains(pattern.toLowerCase())) {
+                    result.putIfAbsent(book, new ArrayList<>());
+                    result.get(book).add(entry.getKey());
+                }
+            }
+        }
+        return result.isEmpty() ? null : result;
     }
 
     @Override
     public String toString() {
-        // place your code here
-        return null;
+        StringBuilder result = new StringBuilder();
+        for (Map.Entry<Author, List<Book>> entry : catalog.entrySet()) {
+            result.append(entry.getKey()).append(": ").append(entry.getValue()).append(EOL);
+        }
+        return result.toString().trim();
     }
 }
